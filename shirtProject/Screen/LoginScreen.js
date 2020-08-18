@@ -95,9 +95,9 @@ const LoginScreen = props => {
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={UserEmail => setUserEmail(UserEmail)}
-                underlineColorAndroid="#FFFFFF"
+                underlineColorAndroid="#778899"
                 placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#F6F6F7"
+                placeholderTextColor="#778899"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 ref={ref => {
@@ -114,9 +114,9 @@ const LoginScreen = props => {
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={UserPassword => setUserPassword(UserPassword)}
-                underlineColorAndroid="#FFFFFF"
+                underlineColorAndroid="#778899"
                 placeholder="Enter Password" //12345
-                placeholderTextColor="#F6F6F7"
+                placeholderTextColor="#778899"
                 keyboardType="default"
                 ref={ref => {
                   this._passwordinput = ref;
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#FFE4E1',
   },
   SectionStyle: {
     flexDirection: 'row',
@@ -163,10 +163,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#4682B4',
     borderWidth: 0,
-    color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    color: '#708090',
+    borderColor: '#4169E1',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,
@@ -176,21 +176,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: '#FFFAFA',
     paddingVertical: 10,
     fontSize: 16,
   },
   inputStyle: {
     flex: 1,
-    color: 'white',
+    color: '#708090',
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
     borderRadius: 30,
-    borderColor: 'white',
+    borderColor: '#708090',
   },
   registerTextStyle: {
-    color: '#FFFFFF',
+    color: '#708090',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,

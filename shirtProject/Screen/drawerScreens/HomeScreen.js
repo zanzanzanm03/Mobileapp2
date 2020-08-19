@@ -15,16 +15,18 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 50,
     height: 50,
-  }
+  },
+  logo: {
+    width: 66,
+    height: 58,
+  },
 });
 
 const HomeScreen = () => {
+  global.currentScreenIndex = 'HomeScreen';
   return (
-    <View style={styles.container}>
-    <Image
-      style={styles.tinyLogo}
-      source={require('./Image/shrit.png')}
-    />
+    <View style={{ flex: 1, alignItems: 'center', marginTop: 100 }}>
+      <Text style={{ fontSize: 23, marginTop: 10 }}>Home Screen</Text>
     </View>
   );
 };

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class SettingsScreen extends Component {
+export default class ProfileScreen extends Component {
 
   render() {
     return (

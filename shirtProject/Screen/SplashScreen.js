@@ -5,13 +5,12 @@
 import React, { useState, useEffect } from 'react';
 
 //Import all required component
-import { ActivityIndicator, View, StyleSheet, Image } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Image,ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const SplashScreen = props => {
   //State for ActivityIndicator animation
   let [animating, setAnimating] = useState(true);
-
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
@@ -27,6 +26,11 @@ const SplashScreen = props => {
   }, []);
 
   return (
+    <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
+    style={{flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center"}} 
+    >
     <View style={styles.container}>
       <Image
         source={require('../Image/aboutreact.png')}
@@ -39,6 +43,7 @@ const SplashScreen = props => {
         style={styles.activityIndicator}
       />
     </View>
+    </ImageBackground>
   );
 };
 export default SplashScreen;
@@ -48,7 +53,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFE4E1',
   },
   activityIndicator: {
     alignItems: 'center',

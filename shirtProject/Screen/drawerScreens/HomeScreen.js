@@ -6,26 +6,61 @@ import React from 'react';
 
 //Import all required component
 import 'react-native-gesture-handler';
-import { View, Text,Image,StyleSheet,TouchableOpacity, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { View, Text,Image,StyleSheet,TouchableOpacity, Button,ScrollView, ImageBackground } from 'react-native';
+import { Slide } from 'react-slideshow-image';
 
-import { createStackNavigator } from '@react-navigation/stack';
 
 
 const HomeScreen =({navigation}) =>{
   global.currentScreenIndex = 'HomeScreen';
+  
   return (
+    <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
+    style={{flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center"}} 
+    >
     <View style={styles.container}> 
+      <ScrollView>
             <Image
-              source={require('../image/shrit.png')}
               style={styles.logo}
+              source={require('../image/shrit.png')}
+            />
+            <Button
+                style={styles.buttonStyle}
+                title="Go to Details"
+                onPress={() => navigation.navigate('DetailScreen')}
+              />
+             <Image
+              style={styles.logo}
+              source={require('../image/shrit2.png')}
+            />
+            <Button
+                style={styles.buttonStyle}
+                title="Go to Details"
+                onPress={() => navigation.navigate('DetailScreen')}
+              />
+             <Image
+              style={styles.logo}
+              source={require('../image/shrit3.png')}
+            />
+            <Button
+                style={styles.buttonStyle}
+                title="Go to Details"
+                onPress={() => navigation.navigate('DetailScreen')}
+              />
+             <Image
+              style={styles.logo}
+              source={require('../image/shrit4.png')}
             />
              <Button
                 style={styles.buttonStyle}
                 title="Go to Details"
                 onPress={() => navigation.navigate('DetailScreen')}
               />
+        </ScrollView>
     </View>
+    </ImageBackground>
   );
 }
 export default HomeScreen;
@@ -35,7 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
   },
   tinyLogo: {
     width: 50,
@@ -44,6 +78,8 @@ const styles = StyleSheet.create({
   logo: {
     width: 300,
     height: 300,
+    marginTop: 10,
+    marginBottom: 10,
   },
   buttonStyle: {
     backgroundColor: '#4682B4',

@@ -3,6 +3,8 @@ import React from 'react';
 
 //Import all required component
 import { View, Text } from 'react-native';
+import {WebView} from 'react-native';
+
 
 const DetailScreen = () => {
   return (

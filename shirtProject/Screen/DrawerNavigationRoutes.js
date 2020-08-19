@@ -22,7 +22,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
       title: 'Home Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#AFEEEE',
+        backgroundColor: '#808080',
       },
       headerTintColor: '#fff',
     }),
@@ -36,7 +36,7 @@ const SecondActivity_StackNavigator = createStackNavigator({
       title: 'Setting Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#AFEEEE',
+        backgroundColor: '#808080',
       },
       headerTintColor: '#fff',
     }),
@@ -50,7 +50,7 @@ const ThirdActivity_StackNavigator = createStackNavigator({
       title: 'Detail Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#AFEEEE',
+        backgroundColor: '#808080',
       },
       headerTintColor: '#fff',
     }),

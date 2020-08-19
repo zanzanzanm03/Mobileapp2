@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFE4E1',
+    backgroundColor: 'white',
   },
   tinyLogo: {
     width: 50,

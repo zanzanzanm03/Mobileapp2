@@ -62,7 +62,7 @@ const CustomSidebarMenu = props => {
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{ fontSize: 25, color: '#AFEEEE' }}>
+          <Text style={{ fontSize: 25, color: '#808080' }}>
             {'KZ Shop'.charAt(0)}
           </Text>
         </View>
@@ -80,7 +80,7 @@ const CustomSidebarMenu = props => {
               backgroundColor:
                 global.currentScreenIndex === item.screenToNavigate
                   ? '#4b9ff2'
-                  : '#307ecc',
+                  : '#808080',
             }}
             key={key}
             onStartShouldSetResponder={() =>
@@ -100,13 +100,13 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#4682B4',
+    backgroundColor: '#808080',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#4682B4',
+    backgroundColor: '#808080',
     padding: 15,
     textAlign: 'center',
   },

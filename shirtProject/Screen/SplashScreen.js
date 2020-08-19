@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 
 //Import all required component
-import { ActivityIndicator, View, StyleSheet, Image,ImageBackground } from 'react-native';
+import { View, StyleSheet, Image,ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const SplashScreen = props => {
@@ -36,12 +36,6 @@ const SplashScreen = props => {
         source={require('../Image/aboutreact.png')}
         style={{ width: '90%', resizeMode: 'contain', margin: 30 }}
       />
-      <ActivityIndicator
-        animating={animating}
-        color="#FFFFFF"
-        size="large"
-        style={styles.activityIndicator}
-      />
     </View>
     </ImageBackground>
   );
@@ -53,9 +47,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  activityIndicator: {
-    alignItems: 'center',
-    height: 80,
   },
 });

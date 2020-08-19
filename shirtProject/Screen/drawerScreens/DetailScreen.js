@@ -43,8 +43,8 @@ export default class DetailScreen extends Component {
       <View style={styles.container}>
         <ScrollView>
           <View style={{alignItems:'center', marginHorizontal:30}}>
-            <Image style={styles.productImg} source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3v7KDJN7TAoJa5sFaPWcp1HX8JFcpF3z5K3ngz4L6kWoEP7Ca"}}/>
-            <Text style={styles.name}>Super Soft T-Shirt</Text>
+            <Image style={styles.productImg} source={require("D:/application/Mobileapp2/shirtProject/Screen/image/shrit.png")}/>
+            <Text style={styles.name}>Super Black T-Shirt</Text>
             <Text style={styles.price}>$ 12.22</Text>
             <Text style={styles.description}>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 

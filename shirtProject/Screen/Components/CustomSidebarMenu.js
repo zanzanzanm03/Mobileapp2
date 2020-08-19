@@ -5,7 +5,7 @@
 import React from 'react';
 
 //Import all required component
-import { View, StyleSheet, Text, Alert } from 'react-native';
+import { View, StyleSheet, Text, Alert, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const CustomSidebarMenu = props => {
@@ -15,12 +15,12 @@ const CustomSidebarMenu = props => {
       screenToNavigate: 'HomeScreen',
     },
     {
-      navOptionName: 'Profile Screen',
-      screenToNavigate: 'ProfileScreen',
-    },
-    {
       navOptionName: 'Detail Screen',
       screenToNavigate: 'DetailScreen',
+    },
+    {
+      navOptionName: 'Profile',
+      screenToNavigate: 'ProfileScreen',
     },
     {
       navOptionName: 'Logout',
@@ -58,13 +58,14 @@ const CustomSidebarMenu = props => {
       props.navigation.navigate(screenToNavigate);
     }
   };
+
   return (
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{ fontSize: 25, color: '#808080' }}>
-            {'KZ Shop'.charAt(0)}
-          </Text>
+          <Image source={require('D:/application/Mobileapp2/shirtProject/Image/aboutreact.png')}
+          style={stylesSidebar.profileHeaderPicCircle}
+          />
         </View>
         <Text style={stylesSidebar.profileHeaderText}>KZ Shop</Text>
       </View>
@@ -133,5 +134,8 @@ const stylesSidebar = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
   },
+  logout:{
+    textShadowColor: 'red'
+  }
 });
 export default CustomSidebarMenu;

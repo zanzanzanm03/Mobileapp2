@@ -11,6 +11,7 @@ import {
   View,
   Text,
   Image,
+  ImageBackground,
   KeyboardAvoidingView,
   Keyboard,
   TouchableOpacity,
@@ -111,7 +112,12 @@ const RegisterScreen = props => {
     );
   }
   return (
-    <View style={{ flex: 1, backgroundColor: '#FFE4E1' }}>
+    <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
+    style={{flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center"}} 
+    >
+    <View>
       <Loader loading={loading} />
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={{ alignItems: 'center' }}>
@@ -202,6 +208,7 @@ const RegisterScreen = props => {
         </KeyboardAvoidingView>
       </ScrollView>
     </View>
+    </ImageBackground>
   );
 };
 export default RegisterScreen;

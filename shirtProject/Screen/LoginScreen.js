@@ -15,6 +15,7 @@ import {
   Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/loader';
@@ -75,6 +76,11 @@ const LoginScreen = props => {
   };
 
   return (
+  <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
+    style={{flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"}} 
+  >
     <View style={styles.mainBody}>
       <Loader loading={loading} />
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -84,8 +90,8 @@ const LoginScreen = props => {
               <Image
                 source={require('../Image/aboutreact.png')}
                 style={{
-                  width: '50%',
-                  height: 100,
+                  width: '70%',
+                  height: 180,
                   resizeMode: 'contain',
                   margin: 30,
                 }}
@@ -144,6 +150,7 @@ const LoginScreen = props => {
         </View>
       </ScrollView>
     </View>
+    </ImageBackground>
   );
 };
 export default LoginScreen;
@@ -152,7 +159,6 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#FFE4E1',
   },
   SectionStyle: {
     flexDirection: 'row',

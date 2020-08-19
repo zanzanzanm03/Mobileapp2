@@ -5,12 +5,31 @@
 import React from 'react';
 
 //Import all required component
-import { View, Text,Image,StyleSheet } from 'react-native';
+import { View, Text,Image,StyleSheet,TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+
+
+const HomeScreen = () => {
+  global.currentScreenIndex = 'HomeScreen';
+  return (
+    <View style={styles.container}>
+
+          <Image
+            source={require('../image/shrit.png')}
+            style={{ width: '90%', resizeMode: 'contain', margin: 30 }}
+          />
+
+    </View>
+  );
+};
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFE4E1',
   },
   tinyLogo: {
     width: 50,
@@ -21,13 +40,3 @@ const styles = StyleSheet.create({
     height: 58,
   },
 });
-
-const HomeScreen = () => {
-  global.currentScreenIndex = 'HomeScreen';
-  return (
-    <View style={{ flex: 1, alignItems: 'center', marginTop: 100 }}>
-      <Text style={{ fontSize: 23, marginTop: 10 }}>Home Screen</Text>
-    </View>
-  );
-};
-export default HomeScreen;

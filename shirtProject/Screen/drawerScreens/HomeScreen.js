@@ -5,23 +5,29 @@
 import React from 'react';
 
 //Import all required component
-import { View, Text,Image,StyleSheet,TouchableOpacity } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import 'react-native-gesture-handler';
+import { View, Text,Image,StyleSheet,TouchableOpacity, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { createStackNavigator } from '@react-navigation/stack';
 
 
-const HomeScreen = () => {
+const HomeScreen =({navigation}) =>{
   global.currentScreenIndex = 'HomeScreen';
   return (
-    <View style={styles.container}>
-
-          <Image
-            source={require('../image/shrit.png')}
-            style={{ width: '90%', resizeMode: 'contain', margin: 30 }}
-          />
-
+    <View style={styles.container}> 
+            <Image
+              source={require('../image/shrit.png')}
+              style={styles.logo}
+            />
+             <Button
+                style={styles.buttonStyle}
+                title="Go to Details"
+                onPress={() => navigation.navigate('DetailScreen')}
+              />
     </View>
   );
-};
+}
 export default HomeScreen;
 
 const styles = StyleSheet.create({
@@ -36,7 +42,20 @@ const styles = StyleSheet.create({
     height: 50,
   },
   logo: {
-    width: 66,
-    height: 58,
+    width: 300,
+    height: 300,
+  },
+  buttonStyle: {
+    backgroundColor: '#4682B4',
+    borderWidth: 0,
+    color: '#708090',
+    borderColor: '#4169E1',
+    height: 40,
+    alignItems: 'center',
+    borderRadius: 30,
+    marginLeft: 35,
+    marginRight: 35,
+    marginTop: 20,
+    marginBottom: 20,
   },
 });

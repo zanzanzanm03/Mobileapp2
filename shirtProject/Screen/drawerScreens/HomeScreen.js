@@ -5,13 +5,26 @@
 import React from 'react';
 
 //Import all required component
-import { View, Text } from 'react-native';
+import { View, Text,Image,StyleSheet } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  }
+});
 
 const HomeScreen = () => {
-  global.currentScreenIndex = 'HomeScreen';
   return (
-    <View style={{ flex: 1, alignItems: 'center', marginTop: 100 }}>
-      <Text style={{ fontSize: 23, marginTop: 10 }}>Home Screen</Text>
+    <View style={styles.container}>
+    <Image
+      style={styles.tinyLogo}
+      source={require('./Image/shrit.png')}
+    />
     </View>
   );
 };

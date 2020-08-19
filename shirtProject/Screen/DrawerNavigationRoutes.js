@@ -11,6 +11,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 //Import External Screens
 import HomeScreen from './drawerScreens/HomeScreen';
 import SettingsScreen from './drawerScreens/SettingsScreen';
+import DetailScreen from './drawerScreens/DetailScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
@@ -21,7 +22,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
       title: 'Home Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#AFEEEE',
       },
       headerTintColor: '#fff',
     }),
@@ -35,7 +36,21 @@ const SecondActivity_StackNavigator = createStackNavigator({
       title: 'Setting Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#AFEEEE',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
+const ThirdActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: DetailScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Detail Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#AFEEEE',
       },
       headerTintColor: '#fff',
     }),
@@ -54,6 +69,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: SecondActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Setting Screen',
+      },
+    },
+    DetailScreen: {
+      screen: ThirdActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Detail Screen',
       },
     },
   },

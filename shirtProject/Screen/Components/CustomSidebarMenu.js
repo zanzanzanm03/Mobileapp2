@@ -19,6 +19,10 @@ const CustomSidebarMenu = props => {
       screenToNavigate: 'SettingsScreen',
     },
     {
+      navOptionName: 'Detail Screen',
+      screenToNavigate: 'DetailScreen',
+    },
+    {
       navOptionName: 'Logout',
       screenToNavigate: 'logout',
     },
@@ -29,7 +33,7 @@ const CustomSidebarMenu = props => {
       props.navigation.toggleDrawer();
       Alert.alert(
         'Logout',
-        'Are you sure? You want to logout?',
+        'You want to logout now?',
         [
           {
             text: 'Cancel',
@@ -58,7 +62,7 @@ const CustomSidebarMenu = props => {
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{ fontSize: 25, color: '#307ecc' }}>
+          <Text style={{ fontSize: 25, color: '#AFEEEE' }}>
             {'KZ Shop'.charAt(0)}
           </Text>
         </View>

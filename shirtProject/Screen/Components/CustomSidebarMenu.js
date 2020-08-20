@@ -11,16 +11,20 @@ import AsyncStorage from '@react-native-community/async-storage';
 const CustomSidebarMenu = props => {
   let items = [
     {
-      navOptionName: 'Home Screen',
+      navOptionName: 'Home',
       screenToNavigate: 'HomeScreen',
     },
     {
-      navOptionName: 'Detail Screen',
+      navOptionName: 'Detail',
       screenToNavigate: 'DetailScreen',
     },
     {
       navOptionName: 'Profile',
       screenToNavigate: 'ProfileScreen',
+    },
+    {
+      navOptionName: 'Search',
+      screenToNavigate: 'SearchScreen',
     },
     {
       navOptionName: 'Logout',

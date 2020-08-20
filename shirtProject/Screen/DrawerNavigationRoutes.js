@@ -12,6 +12,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import HomeScreen from './drawerScreens/HomeScreen';
 import ProfileScreen from './drawerScreens/ProfileScreen';
 import DetailScreen from './drawerScreens/DetailScreen';
+import SearchScreen from './drawerScreens/SearchScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
@@ -57,6 +58,20 @@ const ThirdActivity_StackNavigator = createStackNavigator({
   },
 });
 
+const FourActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: SearchScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Search Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#808080',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -75,6 +90,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: ThirdActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Detail Screen',
+      },
+    },
+    SearchScreen: {
+      screen: FourActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Search Screen',
       },
     },
   },

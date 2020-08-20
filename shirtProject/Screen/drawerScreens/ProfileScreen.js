@@ -33,7 +33,7 @@ export default class ProfileScreen extends Component {
 
           <View style={styles.profileDetail}>
             <View style={styles.detailContent}>
-              <Text style={styles.title}>Photos</Text>
+              <Text style={styles.title}>Comment</Text>
               <Text style={styles.count}>319</Text>
             </View>
             <View style={styles.detailContent}>
@@ -41,7 +41,7 @@ export default class ProfileScreen extends Component {
               <Text style={styles.count}>600</Text>
             </View>
             <View style={styles.detailContent}>
-              <Text style={styles.title}>Following</Text>
+              <Text style={styles.title}>Like</Text>
               <Text style={styles.count}>500</Text>
             </View>
           </View>

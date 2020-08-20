@@ -13,6 +13,7 @@ import HomeScreen from './drawerScreens/HomeScreen';
 import ProfileScreen from './drawerScreens/ProfileScreen';
 import DetailScreen from './drawerScreens/DetailScreen';
 import SearchScreen from './drawerScreens/SearchScreen';
+import ListviewScreen from './drawerScreens/ListviewScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
@@ -72,6 +73,20 @@ const FourActivity_StackNavigator = createStackNavigator({
   },
 });
 
+const FiveActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: ListviewScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Listview Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#808080',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -96,6 +111,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: FourActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Search Screen',
+      },
+    },
+    ListviewScreen: {
+      screen: FiveActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Listview Screen',
       },
     },
   },

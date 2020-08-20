@@ -27,6 +27,10 @@ const CustomSidebarMenu = props => {
       screenToNavigate: 'SearchScreen',
     },
     {
+      navOptionName: 'Listview',
+      screenToNavigate: 'ListviewScreen',
+    },
+    {
       navOptionName: 'Logout',
       screenToNavigate: 'logout',
     },

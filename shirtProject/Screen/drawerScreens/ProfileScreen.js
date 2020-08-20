@@ -5,10 +5,19 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
+  TouchableOpacity,Switch
 } from 'react-native';
 
 export default class ProfileScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+       switch1Value: false,
+    }
+ }
+ toggleSwitch1 = (value) => {
+    this.setState({switch1Value: value})
+ }
 
   render() {
     return (
@@ -36,6 +45,12 @@ export default class ProfileScreen extends Component {
               <Text style={styles.count}>500</Text>
             </View>
           </View>
+
+          <View style={{flex: 1, alignItems: 'center', marginTop: 100}}>
+            <Text>Dark Theme</Text>
+            <Switch onValueChange = {this.toggleSwitch1} value = {this.state.switch1Value}/>
+            
+         </View>
 
           <View style={styles.body}>
             <View style={styles.bodyContent}>

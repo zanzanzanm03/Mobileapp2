@@ -5,22 +5,24 @@
 import React from 'react';
 
 //Import Navigators
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 //Import External Screens
 import HomeScreen from './drawerScreens/HomeScreen';
 import ProfileScreen from './drawerScreens/ProfileScreen';
 import DetailScreen from './drawerScreens/DetailScreen';
+import img from './drawerScreens/GalleryScreen';
 import SearchScreen from './drawerScreens/SearchScreen';
 import ListviewScreen from './drawerScreens/ListviewScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
+import GalleryScreen from './drawerScreens/GalleryScreen';
 
 const FirstActivity_StackNavigator = createStackNavigator({
   First: {
     screen: HomeScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Home Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
@@ -34,7 +36,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
 const SecondActivity_StackNavigator = createStackNavigator({
   First: {
     screen: ProfileScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Profile Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
@@ -48,7 +50,7 @@ const SecondActivity_StackNavigator = createStackNavigator({
 const ThirdActivity_StackNavigator = createStackNavigator({
   First: {
     screen: DetailScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Detail Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
@@ -62,7 +64,7 @@ const ThirdActivity_StackNavigator = createStackNavigator({
 const FourActivity_StackNavigator = createStackNavigator({
   First: {
     screen: SearchScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Search Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
@@ -76,8 +78,22 @@ const FourActivity_StackNavigator = createStackNavigator({
 const FiveActivity_StackNavigator = createStackNavigator({
   First: {
     screen: ListviewScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Listview Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#808080',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
+const SixActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: GalleryScreen,
+    navigationOptions: ({navigation}) => ({
+      title: 'Gallery Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#808080',
@@ -119,12 +135,18 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         drawerLabel: 'Listview Screen',
       },
     },
+    GalleryScreen: {
+      screen: SixActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Gallery Screen',
+      },
+    },
   },
   {
     contentComponent: CustomSidebarMenu,
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle',
-  }
+  },
 );
 export default DrawerNavigatorRoutes;

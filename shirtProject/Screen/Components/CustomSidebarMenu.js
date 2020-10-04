@@ -5,10 +5,10 @@
 import React from 'react';
 
 //Import all required component
-import { View, StyleSheet, Text, Alert, Image } from 'react-native';
+import {View, StyleSheet, Text, Alert, Image} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const CustomSidebarMenu = props => {
+const CustomSidebarMenu = (props) => {
   let items = [
     {
       navOptionName: 'Home',
@@ -29,6 +29,10 @@ const CustomSidebarMenu = props => {
     {
       navOptionName: 'Listview',
       screenToNavigate: 'ListviewScreen',
+    },
+    {
+      navOptionName: 'Gallery',
+      screenToNavigate: 'GalleryScreen',
     },
     {
       navOptionName: 'Logout',
@@ -58,7 +62,7 @@ const CustomSidebarMenu = props => {
             },
           },
         ],
-        { cancelable: false }
+        {cancelable: false},
       );
     } else {
       props.navigation.toggleDrawer();
@@ -71,14 +75,15 @@ const CustomSidebarMenu = props => {
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Image source={require('D:/application/Mobileapp2/shirtProject/Image/aboutreact.png')}
-          style={stylesSidebar.profileHeaderPicCircle}
+          <Image
+            source={require('D:/application/Mobileapp2/shirtProject/Image/aboutreact.png')}
+            style={stylesSidebar.profileHeaderPicCircle}
           />
         </View>
         <Text style={stylesSidebar.profileHeaderText}>KZ Shop</Text>
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
-      <View style={{ width: '100%', flex: 1 }}>
+      <View style={{width: '100%', flex: 1}}>
         {items.map((item, key) => (
           <View
             style={{
@@ -95,7 +100,7 @@ const CustomSidebarMenu = props => {
             onStartShouldSetResponder={() =>
               handleClick(key, item.screenToNavigate)
             }>
-            <Text style={{ fontSize: 15, color: 'white' }}>
+            <Text style={{fontSize: 15, color: 'white'}}>
               {item.navOptionName}
             </Text>
           </View>
@@ -142,8 +147,8 @@ const stylesSidebar = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
   },
-  logout:{
-    textShadowColor: 'red'
-  }
+  logout: {
+    textShadowColor: 'red',
+  },
 });
 export default CustomSidebarMenu;

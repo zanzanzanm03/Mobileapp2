@@ -26,6 +26,7 @@ class RegisterScreen extends Component {
     super();
 
     this.state = {
+      id: '',
       name: '',
       email: '',
       password: '',
@@ -40,6 +41,8 @@ class RegisterScreen extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        id: this.state.id,
+
         name: this.state.name,
 
         email: this.state.email,
@@ -98,6 +101,17 @@ class RegisterScreen extends Component {
               />
             </View>
             <KeyboardAvoidingView enabled>
+              <View style={styles.SectionStyle}>
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={(id) => this.setState({id: id})}
+                  underlineColorAndroid="#778899"
+                  placeholder="Enter ID"
+                  placeholderTextColor="#778899"
+                  autoCapitalize="sentences"
+                  returnKeyType="next"
+                />
+              </View>
               <View style={styles.SectionStyle}>
                 <TextInput
                   style={styles.inputStyle}

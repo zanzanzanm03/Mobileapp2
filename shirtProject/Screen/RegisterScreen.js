@@ -2,7 +2,7 @@
 /* https://aboutreact.com/react-native-login-and-signup/ */
 
 //Import React and Hook we needed
-import React, { useState } from 'react';
+import React, {Component} from 'react';
 
 //Import all required component
 import {
@@ -16,201 +16,137 @@ import {
   Keyboard,
   TouchableOpacity,
   ScrollView,
+  AppRegistry,
+  Alert,
 } from 'react-native';
 import Loader from './Components/loader';
 
-const RegisterScreen = props => {
-  let [userName, setUserName] = useState('');
-  let [userEmail, setUserEmail] = useState('');
-  let [userAge, setUserAge] = useState('');
-  let [userAddress, setUserAddress] = useState('');
-  let [loading, setLoading] = useState(false);
-  let [errortext, setErrortext] = useState('');
-  let [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
+class RegisterScreen extends Component {
+  constructor() {
+    super();
 
-  const handleSubmitButton = () => {
-    setErrortext('');
-    if (!userName) {
-      alert('Please fill Name');
-      return;
-    }
-    if (!userEmail) {
-      alert('Please fill Email');
-      return;
-    }
-    if (!userAge) {
-      alert('Please fill Age');
-      return;
-    }
-    if (!userAddress) {
-      alert('Please fill Address');
-      return;
-    }
-    //Show Loader
-    setLoading(true);
-    var dataToSend = {
-      user_name: userName,
-      user_email: userEmail,
-      user_age: userAge,
-      user_address: userAddress,
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
     };
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
+  }
 
-    fetch('https://aboutreact.herokuapp.com/register.php', {
+  UserRegistrationFunction = () => {
+    fetch('http://172.18.133.64/api/user_register.php', {
       method: 'POST',
-      body: formBody,
       headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        name: this.state.name,
+
+        email: this.state.email,
+
+        password: this.state.password,
+      }),
     })
-      .then(response => response.json())
-      .then(responseJson => {
-        //Hide Loader
-        setLoading(false);
-        console.log(responseJson);
-        // If server response message same as Data Matched
-        if (responseJson.status == 1) {
-          setIsRegistraionSuccess(true);
-          console.log('Registration Successful. Please Login to proceed');
-        } else {
-          setErrortext('Registration Unsuccessful');
-        }
+      .then((response) => response.json())
+      .then((responseJson) => {
+        // Showing response message coming from server after inserting records.
+        Alert.alert(responseJson);
       })
-      .catch(error => {
-        //Hide Loader
-        setLoading(false);
+      .catch((error) => {
         console.error(error);
       });
   };
-  if (isRegistraionSuccess) {
+  render() {
+    // if (isRegistraionSuccess) {
+    //   return (
+    //     <View
+    //       style={{
+    //         flex: 1,
+    //         backgroundColor: '#FFE4E1',
+    //         justifyContent: 'center',
+    //       }}>
+    //       <Image
+    //         source={require('../Image/success.png')}
+    //         style={{height: 150, resizeMode: 'contain', alignSelf: 'center'}}
+    //       />
+    //       <Text style={styles.successTextStyle}>Registration Successful.</Text>
+    //       <TouchableOpacity
+    //         style={styles.buttonStyle}
+    //         activeOpacity={0.5}
+    //         onPress={() => props.navigation.navigate('LoginScreen')}>
+    //         <Text style={styles.buttonTextStyle}>Login Now</Text>
+    //       </TouchableOpacity>
+    //     </View>
+    //   );
+    // }
+
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFE4E1',
-          justifyContent: 'center',
-        }}>
-        <Image
-          source={require('../Image/success.png')}
-          style={{ height: 150, resizeMode: 'contain', alignSelf: 'center' }}
-        />
-        <Text style={styles.successTextStyle}>Registration Successful.</Text>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('LoginScreen')}>
-          <Text style={styles.buttonTextStyle}>Login Now</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground
+        source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
+        style={{flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+        <View>
+          <ScrollView keyboardShouldPersistTaps="handled">
+            <View style={{alignItems: 'center'}}>
+              <Image
+                source={require('../Image/aboutreact.png')}
+                style={{
+                  width: '50%',
+                  height: 100,
+                  resizeMode: 'contain',
+                  margin: 30,
+                }}
+              />
+            </View>
+            <KeyboardAvoidingView enabled>
+              <View style={styles.SectionStyle}>
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={(name) => this.setState({name: name})}
+                  underlineColorAndroid="#778899"
+                  placeholder="Enter Name"
+                  placeholderTextColor="#778899"
+                  autoCapitalize="sentences"
+                  returnKeyType="next"
+                />
+              </View>
+              <View style={styles.SectionStyle}>
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={(email) => this.setState({email: email})}
+                  underlineColorAndroid="#778899"
+                  placeholder="Enter Email"
+                  placeholderTextColor="#778899"
+                  keyboardType="email-address"
+                  returnKeyType="next"
+                  blurOnSubmit={false}
+                />
+              </View>
+              <View style={styles.SectionStyle}>
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={(password) =>
+                    this.setState({password: password})
+                  }
+                  underlineColorAndroid="#778899"
+                  placeholder="Enter Password"
+                  placeholderTextColor="#778899"
+                  keyboardType="numeric"
+                  blurOnSubmit={false}
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.buttonStyle}
+                activeOpacity={0.5}
+                onPress={this.UserRegistrationFunction}>
+                <Text style={styles.buttonTextStyle}>REGISTER</Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
+          </ScrollView>
+        </View>
+      </ImageBackground>
     );
   }
-  return (
-    <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
-    style={{flex: 1,
-      resizeMode: "cover",
-      justifyContent: "center"}} 
-    >
-    <View>
-      <Loader loading={loading} />
-      <ScrollView keyboardShouldPersistTaps="handled">
-        <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../Image/aboutreact.png')}
-            style={{
-              width: '50%',
-              height: 100,
-              resizeMode: 'contain',
-              margin: 30,
-            }}
-          />
-        </View>
-        <KeyboardAvoidingView enabled>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={UserName => setUserName(UserName)}
-              underlineColorAndroid="#778899"
-              placeholder="Enter Name"
-              placeholderTextColor="#778899"
-              autoCapitalize="sentences"
-              returnKeyType="next"
-              onSubmitEditing={() =>
-                this._emailinput && this._emailinput.focus()
-              }
-              blurOnSubmit={false}
-            />
-          </View>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={UserEmail => setUserEmail(UserEmail)}
-              underlineColorAndroid="#778899"
-              placeholder="Enter Email"
-              placeholderTextColor="#778899"
-              keyboardType="email-address"
-              ref={ref => {
-                this._emailinput = ref;
-              }}
-              returnKeyType="next"
-              onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
-              blurOnSubmit={false}
-            />
-          </View>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={UserAge => setUserAge(UserAge)}
-              underlineColorAndroid="#778899"
-              placeholder="Enter Age"
-              placeholderTextColor="#778899"
-              keyboardType="numeric"
-              ref={ref => {
-                this._ageinput = ref;
-              }}
-              onSubmitEditing={() =>
-                this._addressinput && this._addressinput.focus()
-              }
-              blurOnSubmit={false}
-            />
-          </View>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={UserAddress => setUserAddress(UserAddress)}
-              underlineColorAndroid="#778899"
-              placeholder="Enter Address"
-              placeholderTextColor="#778899"
-              autoCapitalize="sentences"
-              ref={ref => {
-                this._addressinput = ref;
-              }}
-              returnKeyType="next"
-              onSubmitEditing={Keyboard.dismiss}
-              blurOnSubmit={false}
-            />
-          </View>
-          {errortext != '' ? (
-            <Text style={styles.errorTextStyle}> {errortext} </Text>
-          ) : null}
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            activeOpacity={0.5}
-            onPress={handleSubmitButton}>
-            <Text style={styles.buttonTextStyle}>REGISTER</Text>
-          </TouchableOpacity>
-        </KeyboardAvoidingView>
-      </ScrollView>
-    </View>
-    </ImageBackground>
-  );
-};
+}
 export default RegisterScreen;
 
 const styles = StyleSheet.create({

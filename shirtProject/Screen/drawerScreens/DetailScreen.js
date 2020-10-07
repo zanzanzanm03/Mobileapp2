@@ -22,7 +22,7 @@ export default class DetailScreen extends Component {
   }
 
   componentDidMount() {
-    return fetch('http://172.18.133.7/api/select.php')
+    return fetch('http://172.18.133.64/api/select.php')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({data: responseJson});

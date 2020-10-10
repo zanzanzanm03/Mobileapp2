@@ -33,7 +33,7 @@ class RegisterScreen extends Component {
   }
 
   UserRegistrationFunction = () => {
-    fetch('http://172.18.133.64/api/user_register.php', {
+    fetch('http://192.168.43.56/api/user_register.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

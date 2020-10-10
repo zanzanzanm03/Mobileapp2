@@ -34,7 +34,7 @@ class LoginScreen extends Component {
     const {email} = this.state;
     const {password} = this.state;
 
-    fetch('http://172.18.133.64/api/user_login.php', {
+    fetch('http://192.168.43.56/api/user_login.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

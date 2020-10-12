@@ -44,10 +44,7 @@ export default class HomeScreen extends Component {
   };
   getData = async () => {
     const url =
-      'http://192.168.43.56/api/select.php?start=' +
-      this.state.start +
-      '&end=' +
-      this.state.end;
+      'http://192.168.43.56/api/select.php' 
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -94,7 +91,7 @@ export default class HomeScreen extends Component {
                         style={styles.buttonAdd}
                         onPress={() =>
                           this.props.navigation.navigate('DetailScreen', {
-                            itemId: item.shirtID,
+                            id: item.shirtID,
                           })
                         }>
                         <Text style={styles.shareButtonText}>Detail</Text>

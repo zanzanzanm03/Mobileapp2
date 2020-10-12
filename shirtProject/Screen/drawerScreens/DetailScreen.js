@@ -20,14 +20,17 @@ export default class DetailScreen extends Component {
     const {navigation} = this.props;
     this.state = {
       isLoading: true,
-      id: navigation.getParam('itemId',''),
+      id: '',
       data: [],
     };
   }
 //comment
 
   componentDidMount() {
-    var url = 'http://192.168.43.56/api/select.php?id=' + this.state.shirtID;
+    const {navigation} = this.props;
+    const itemId = navigation.getParam('id');
+    this.setState({id: itemId});
+    var url = 'http://192.168.43.56/api/selectshirt.php?id='+this.state.id;
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -75,7 +78,7 @@ export default class DetailScreen extends Component {
                     style={{
                       color: '#EE2C2C',
                       fontSize: 35,
-                      marginTop: Platform.OS === 'ios' ? 0 : 250,
+                      marginTop: Platform.OS === 'ios' ? 10 : 190,
                     }}>
                     {'\n'}฿{data.price}
                   </Text>
@@ -95,6 +98,7 @@ export default class DetailScreen extends Component {
             
           </SafeAreaView>
           <View style={styles.starContainer}>
+                <Text>{'\n'}</Text>
             <Image
               style={styles.star}
               source={{uri: 'https://img.icons8.com/color/40/000000/star.png'}}
@@ -167,7 +171,7 @@ export default class DetailScreen extends Component {
             <TouchableOpacity
               style={styles.shareButton}
               onPress={() => this.clickEventListener()}>
-              <Text style={styles.shareButtonText}>Add To Cart</Text>
+              <Text style={styles.shareButtonText}>Add To Cart{this.state.id}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

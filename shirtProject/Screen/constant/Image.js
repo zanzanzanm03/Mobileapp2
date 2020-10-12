@@ -6,6 +6,6 @@ const IMAGE = {
     '5': require('D:/application/Mobileapp2/shirtProject/Screen/image/5.jpg'),
     '6': require('D:/application/Mobileapp2/shirtProject/Screen/image/6.jpg'),
     '7': require('D:/application/Mobileapp2/shirtProject/Screen/image/7.jpg'),
-    '7': require('D:/application/Mobileapp2/shirtProject/Screen/image/8.jpg')
+    '8': require('D:/application/Mobileapp2/shirtProject/Screen/image/8.jpg')
 };
 export {IMAGE};

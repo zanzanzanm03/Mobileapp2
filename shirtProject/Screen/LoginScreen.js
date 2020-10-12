@@ -18,6 +18,7 @@ import {
   KeyboardAvoidingView,
   ImageBackground,
 } from 'react-native';
+import {Alert} from 'react-native';
 // import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/loader';
 
@@ -34,18 +35,12 @@ class LoginScreen extends Component {
     const {email} = this.state;
     const {password} = this.state;
 
-    fetch('http://192.168.43.56/api/user_login.php', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-
-        password: password,
-      }),
-    })
+    fetch(
+      'http://192.168.43.7/api/user_login.php?email=' +
+        this.state.email +
+        '&password=' +
+        this.state.password,
+    )
       .then((response) => response.json())
       .then((responseJson) => {
         // If server response message same as Data Matched

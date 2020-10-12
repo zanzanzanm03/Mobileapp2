@@ -24,7 +24,7 @@ export default class DetailScreen extends Component {
       data: [],
     };
   }
-
+//comment
   componentDidMount() {
     return fetch('http://192.168.43.56/api/select.php')
       .then((response) => response.json())

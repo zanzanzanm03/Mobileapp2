@@ -24,7 +24,7 @@ const HomeScreen =({navigation}) =>{
       <ScrollView>
             <Image
               style={styles.logo}
-              source={require('../image/shrit.png')}
+              source={require('../image/4.jpg')}
             />
             <Button
                 style={styles.buttonStyle}

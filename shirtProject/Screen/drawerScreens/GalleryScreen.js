@@ -54,7 +54,7 @@ export default class extends Component {
           }>
           <Image
             style={styles.image}
-            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/Adidas.jpg')}
+            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/1.jpg')}
           />
         </View>
         <View
@@ -62,7 +62,7 @@ export default class extends Component {
           title={<Text numberOfLines={1}>Big lie behind Nine’s new show</Text>}>
           <Image
             style={styles.image}
-            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/Nike.jpg')}
+            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/2.jpg')}
           />
         </View>
         <View
@@ -70,7 +70,7 @@ export default class extends Component {
           title={<Text numberOfLines={1}>Why Stone split from Garfield</Text>}>
           <Image
             style={styles.image}
-            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/Levis.jpg')}
+            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/3.jpg')}
           />
         </View>
         <View
@@ -80,7 +80,7 @@ export default class extends Component {
           }>
           <Image
             style={styles.image}
-            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/shrit.png')}
+            source={require('D:/application/Mobileapp2/shirtProject/Screen/image/4.jpg')}
           />
         </View>
       </Swiper>

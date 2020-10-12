@@ -9,7 +9,9 @@ import {
   ScrollView,
   FlatList,
   Button,
+  SafeAreaView,
 } from 'react-native';
+import {IMAGE} from '../constant/Image';
 // import Gallery from 'react-native-image-gallery';
 
 export default class DetailScreen extends Component {
@@ -18,6 +20,8 @@ export default class DetailScreen extends Component {
 
     this.state = {
       isLoading: true,
+      id: '',
+      data: [],
     };
   }
 
@@ -36,16 +40,46 @@ export default class DetailScreen extends Component {
     Alert.alert('Success', 'Product has beed added to cart');
   }
 
-  render() {
+  render ()  {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView>
           <View style={{alignItems: 'center', marginHorizontal: 30}}>
-            <Image
-              style={styles.productImg}
-              source={require('D:/application/Mobileapp2/shirtProject/Screen/image/shrit.png')}
-            />
-            <FlatList
+          <SafeAreaView
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: 20,
+              marginTop: 20,
+            }}>
+              <SafeAreaView style={{flexDirection: 'row'}}>
+              <SafeAreaView style={{
+                    backgroundColor: '#696969',
+                    padding: 10,
+                    margin: 10,
+                    borderRadius: 10,
+                  }}>
+                {this.state.data.map((data) => (
+                  <Text style={{color: '#fff', fontWeight: 'bold'}}>
+                  <Text style={{color: '#000000'}}>
+                    รหัสสินค้า: {data.shirtID}
+                  </Text>
+                  {'\n'}ชื่อสินค้า: {data.shirtName}
+                  {'\n'}ราคา: {data.price}
+                  <Image
+                style={{
+                  width: 200,
+                  height: 150,
+                  
+                }}
+                source={IMAGE[data.img]}></Image>
+                </Text>
+                ))}
+              </SafeAreaView>
+              </SafeAreaView>
+            </SafeAreaView>
+            {/* <FlatList
               data={this.state.data}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => (
@@ -60,12 +94,12 @@ export default class DetailScreen extends Component {
                     <Text style={{color: '#000000'}}>
                       รหัสสินค้า: {item.shirtID}
                     </Text>
-                    {'\t'}ชื่อสินค้า: {item.shirtName}
-                    {'\t'}ราคา: {item.price}
+                    {'\n'}ชื่อสินค้า: {item.shirtName}
+                    {'\n'}ราคา: {item.price}
                   </Text>
                 </View>
               )}
-            />
+            /> */}
             {/* <Text style={styles.name}>Super Black T-Shirt</Text>
             <Text style={styles.price}>$ 12.22</Text>
             <Text style={styles.description}>
@@ -152,7 +186,7 @@ export default class DetailScreen extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

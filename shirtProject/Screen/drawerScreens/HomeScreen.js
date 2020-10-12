@@ -2,96 +2,211 @@
 /* https://aboutreact.com/react-native-login-and-signup/ */
 
 //Import React
-import React from 'react';
-
-//Import all required component
+import React, {Component} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Alert,
+  ScrollView,
+  FlatList,
+  Button,
+  SafeAreaView,
+  ImageBackground,
+} from 'react-native';
+import {IMAGE} from '../constant/Image';
 import 'react-native-gesture-handler';
-import { View, Text,Image,StyleSheet,TouchableOpacity, Button,ScrollView, ImageBackground } from 'react-native';
-import { Slide } from 'react-slideshow-image';
 
+export default class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      isLoading: true,
+      id: '',
+      data: [],
+    };
+  }
 
-const HomeScreen =({navigation}) =>{
-  global.currentScreenIndex = 'HomeScreen';
-  
-  return (
+  componentDidMount() {
+    this.setState({isLoading: true}, this.getData);
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+  toggleSwitch = (value) => {
+    //onValueChange of the switch this function will be called
+    this.setState({switchValue: value});
+    //state changes according to switch
+    //which will result in re-render the text
+  };
+  getData = async () => {
+    const url =
+      'http://192.168.43.56/api/select.php?start=' +
+      this.state.start +
+      '&end=' +
+      this.state.end;
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          data: this.state.data.concat(responseJson),
+          isLoading: false,
+        });
+      });
+  };
+  render() {
+    return (
     <ImageBackground source={require('D:/application/Mobileapp2/shirtProject/Image/back.jpg')}
     style={{flex: 1,
       resizeMode: "cover",
       justifyContent: "center"}} 
     >
-    <View style={styles.container}> 
       <ScrollView>
-            <Image
-              style={styles.logo}
-              source={require('../image/4.jpg')}
+      <SafeAreaView style={{flex: 1}}>
+            <FlatList
+              style={styles.container}
+              data={this.state.data}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => (
+                <View
+                  style={{
+                    backgroundColor: '#EEB4B4',
+                    // padding: 10,
+                    margin: 10,
+                    borderRadius: 10,
+                  }}>
+                    <TouchableOpacity>
+                        <Image source={IMAGE[item.img]} style={styles.productImg} />
+                      </TouchableOpacity>
+                      <TouchableOpacity >
+                        <Text style={{color: '#000000',fontSize: 20,fontWeight: 'bold', textAlign: 'center'}}>รหัสสินค้า:{item.shirtID}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.shareButtonText}>ชื่อสินค้า:{item.shirtName}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.shareButtonText}>ราคา:{item.price}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.buttonAdd}
+                        onPress={() =>
+                          this.props.navigation.navigate('DetailScreen', {
+                            itemId: item.shirtID,
+                          })
+                        }>
+                        <Text style={styles.shareButtonText}>Detail</Text>
+                      </TouchableOpacity>
+                </View>
+              )} 
             />
-            <Button
-                style={styles.buttonStyle}
-                title="Go to Details"
-                onPress={() => navigation.navigate('DetailScreen')}
-              />
-             <Image
-              style={styles.logo}
-              source={require('../image/shrit2.png')}
-            />
-            <Button
-                style={styles.buttonStyle}
-                title="Go to Details"
-                onPress={() => navigation.navigate('DetailScreen')}
-              />
-             <Image
-              style={styles.logo}
-              source={require('../image/shrit3.png')}
-            />
-            <Button
-                style={styles.buttonStyle}
-                title="Go to Details"
-                onPress={() => navigation.navigate('DetailScreen')}
-              />
-             <Image
-              style={styles.logo}
-              source={require('../image/shrit4.png')}
-            />
-             <Button
-                style={styles.buttonStyle}
-                title="Go to Details"
-                onPress={() => navigation.navigate('DetailScreen')}
-              />
+          </SafeAreaView>
         </ScrollView>
-    </View>
     </ImageBackground>
-  );
+    );
+    }
 }
-export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginVertical: 20,
+  },
+  productImg: {
+    width: '100%',
+    height: 250,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  tinyLogo: {
-    width: 50,
-    height: 50,
+  name: {
+    fontSize: 28,
+    color: '#696969',
+    fontWeight: 'bold',
   },
-  logo: {
-    width: 300,
-    height: 300,
+  price: {
     marginTop: 10,
-    marginBottom: 10,
+    fontSize: 18,
+    color: 'green',
+    fontWeight: 'bold',
   },
-  buttonStyle: {
-    backgroundColor: '#4682B4',
-    borderWidth: 0,
-    color: '#708090',
-    borderColor: '#4169E1',
+  description: {
+    textAlign: 'center',
+    marginTop: 10,
+    color: '#696969',
+  },
+  star: {
+    width: 40,
     height: 40,
+  },
+  btnColor: {
+    height: 30,
+    width: 30,
+    borderRadius: 30,
+    marginHorizontal: 3,
+  },
+  btnSize: {
+    height: 40,
+    width: 40,
+    borderRadius: 40,
+    borderColor: '#778899',
+    borderWidth: 1,
+    marginHorizontal: 3,
+    backgroundColor: 'white',
+
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  starContainer: {
+    justifyContent: 'center',
+    marginHorizontal: 30,
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  contentColors: {
+    justifyContent: 'center',
+    marginHorizontal: 30,
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  contentSize: {
+    justifyContent: 'center',
+    marginHorizontal: 30,
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  separator: {
+    height: 2,
+    backgroundColor: '#eeeeee',
+    marginTop: 20,
+    marginHorizontal: 30,
+  },
+  shareButton: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 20,
-    marginBottom: 20,
+    backgroundColor: '#00BFFF',
+  },
+  shareButtonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    textAlign: 'center'
+  },
+  addToCarContainer: {
+    marginHorizontal: 30,
+  },
+  buttonAdd:{
+    marginTop: 10,
+    height: 35,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
   },
 });
+

@@ -17,16 +17,18 @@ import {IMAGE} from '../constant/Image';
 export default class DetailScreen extends Component {
   constructor(props) {
     super(props);
-
+    const {navigation} = this.props;
     this.state = {
       isLoading: true,
-      id: '',
+      id: navigation.getParam('itemId',''),
       data: [],
     };
   }
 //comment
+
   componentDidMount() {
-    return fetch('http://192.168.43.56/api/select.php')
+    var url = 'http://192.168.43.56/api/select.php?id=' + this.state.shirtID;
+    return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({data: responseJson});
@@ -36,79 +38,62 @@ export default class DetailScreen extends Component {
       });
   }
 
+  // getData = async () => {
+  //   const url = 'http://192.168.43.56/api/select.php?id=' + this.state.shirtID;
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       this.setState({
+  //         data: this.state.data.concat(responseJson),
+  //       });
+  //     });
+  // };
+
   clickEventListener() {
     Alert.alert('Success', 'Product has beed added to cart');
   }
 
   render ()  {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={{alignItems: 'center', marginHorizontal: 30}}>
-          <SafeAreaView
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginLeft: 20,
-              marginTop: 20,
-            }}>
-              <SafeAreaView style={{flexDirection: 'row'}}>
-              <SafeAreaView style={{
-                    backgroundColor: '#696969',
-                    padding: 10,
-                    margin: 10,
-                    borderRadius: 10,
-                  }}>
+        <ScrollView style={{flex: 1}}>
+          <SafeAreaView 
+           style={{width: '100%', height: 0, flex: 1, alignItems: 'center'}}>
+           {this.state.data.map((data) => (
+             <Image
+               style={{
+                 width: 300,
+                 height: 300,
+                 marginLeft: 0,
+               }}
+               source={IMAGE[data.img]}></Image>
+           ))}
+          </SafeAreaView>
+          <SafeAreaView style={{flexDirection: 'row'}}>
+              <SafeAreaView style={{alignItems: 'center'}}>
                 {this.state.data.map((data) => (
-                  <Text style={{color: '#fff', fontWeight: 'bold'}}>
-                  <Text style={{color: '#000000'}}>
-                    รหัสสินค้า: {data.shirtID}
+                  <Text
+                    style={{
+                      color: '#EE2C2C',
+                      fontSize: 35,
+                      marginTop: Platform.OS === 'ios' ? 0 : 250,
+                    }}>
+                    {'\n'}฿{data.price}
                   </Text>
-                  {'\n'}ชื่อสินค้า: {data.shirtName}
-                  {'\n'}ราคา: {data.price}
-                  <Image
-                style={{
-                  width: 200,
-                  height: 150,
-                  
-                }}
-                source={IMAGE[data.img]}></Image>
-                </Text>
                 ))}
               </SafeAreaView>
+            <SafeAreaView style={{flexDirection: 'row'}}>
+              <SafeAreaView style={{flex: 9}}>
+                {this.state.data.map((data) => (
+                  <Text style={styles.text}>
+                    รหัสสินค้า:{data.shirtID}
+                    {'\n'}
+                    {'\n'}ชื่อสินค้า:{data.shirtName}
+                  </Text>
+                ))}
               </SafeAreaView>
             </SafeAreaView>
-            {/* <FlatList
-              data={this.state.data}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => (
-                <View
-                  style={{
-                    backgroundColor: '#EEB4B4',
-                    padding: 10,
-                    margin: 10,
-                    borderRadius: 10,
-                  }}>
-                  <Text style={{color: '#fff', fontWeight: 'bold'}}>
-                    <Text style={{color: '#000000'}}>
-                      รหัสสินค้า: {item.shirtID}
-                    </Text>
-                    {'\n'}ชื่อสินค้า: {item.shirtName}
-                    {'\n'}ราคา: {item.price}
-                  </Text>
-                </View>
-              )}
-            /> */}
-            {/* <Text style={styles.name}>Super Black T-Shirt</Text>
-            <Text style={styles.price}>$ 12.22</Text>
-            <Text style={styles.description}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-              Donec quam felis, ultricies nec
-            </Text> */}
-          </View>
+            
+          </SafeAreaView>
           <View style={styles.starContainer}>
             <Image
               style={styles.star}
@@ -186,7 +171,6 @@ export default class DetailScreen extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </SafeAreaView>
     );
   }
 }
@@ -194,7 +178,7 @@ export default class DetailScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginVertical: 20,
   },
   productImg: {
     width: 200,
@@ -274,9 +258,19 @@ const styles = StyleSheet.create({
   },
   shareButtonText: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 18,
+    textAlign: 'center'
   },
   addToCarContainer: {
     marginHorizontal: 30,
+  },
+  buttonAdd:{
+    marginTop: 10,
+    height: 35,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
   },
 });

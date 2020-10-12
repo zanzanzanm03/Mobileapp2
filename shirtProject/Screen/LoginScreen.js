@@ -36,7 +36,7 @@ class LoginScreen extends Component {
     const {password} = this.state;
 
     fetch(
-      'http://192.168.43.7/api/user_login.php?email=' +
+      'http://192.168.43.56/api/user_login.php?email=' +
         this.state.email +
         '&password=' +
         this.state.password,
